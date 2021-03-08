@@ -31,6 +31,7 @@ class UserRow extends Component {
             phone: phone,
             cell: cell,
             picture: thumbnail,
+            location: location.country,
         });
         console.log(this.props);
     }
@@ -41,6 +42,7 @@ class UserRow extends Component {
                 <td>{`${this.state.name.first} ${this.state.name.last}`}</td>
                 <td>{this.state.phone}</td>
                 <td>{this.state.cell}</td>
+                <td>{this.state.location}</td>
             </tr>
         )
     }
