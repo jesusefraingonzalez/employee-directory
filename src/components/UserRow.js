@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
 
 class UserRow extends Component {
+    state = {
+        name: '',
+        dob: '',
+        email: '',
+        phone: '',
+        cell: '',
+        picture: '',
+    }
 
-    render() {
+    componentDidMount() {
         // destructure the user object props
         const {
             name,
             location,
+            dob,
             email,
-            dob: { date, age },
+            // dob: { date, age },
             registered,
             phone,
             cell,
             picture: { thumbnail }
-        } = this.props;
+        } = this.props.employee;
 
+        this.setState({
+            name: name,
+            dob: dob,
+            email: email,
+            phone: phone,
+            cell: cell,
+            picture: thumbnail,
+        });
+        console.log(this.props);
+    }
+    render() {
         return (
             <tr>
-                <td></td>
-                <td></td>
+                <td><img src={this.state.picture}/></td>
+                <td>{`${this.state.name.first} ${this.state.name.last}`}</td>
+                <td>{this.state.phone}</td>
+                <td>{this.state.cell}</td>
             </tr>
         )
     }
 
 }
+
+export default UserRow;
