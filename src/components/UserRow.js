@@ -14,11 +14,8 @@ class UserRow extends Component {
         // destructure the user object props
         const {
             name,
-            location,
             dob,
             email,
-            // dob: { date, age },
-            registered,
             phone,
             cell,
             picture: { thumbnail }
@@ -31,9 +28,7 @@ class UserRow extends Component {
             phone: phone,
             cell: cell,
             picture: thumbnail,
-            location: location.country,
         });
-        console.log(this.props);
     }
     render() {
         return (
@@ -42,7 +37,7 @@ class UserRow extends Component {
                 <td>{`${this.state.name.first} ${this.state.name.last}`}</td>
                 <td>{this.state.phone}</td>
                 <td>{this.state.cell}</td>
-                <td>{this.state.location}</td>
+                <td>{this.state.email}</td>
             </tr>
         )
     }
