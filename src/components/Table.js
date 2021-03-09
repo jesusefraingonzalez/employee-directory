@@ -10,17 +10,28 @@ class Table extends Component {
 
     // make api call when the table mounts
     componentDidMount() {
-        API.getRandomUsers(2)
-        .then(({ data }) => {
-            // console.log(data.results);
-            this.setState({
-                employees: [...data.results]
-            });
-        }).catch(err => console.error(err));
+        // api call to get random users
+        API.getRandomUsers(5)
+            .then(({ data }) => {
+                const employees = data.results.map(employee => {
+                    return {
+                        firstName: employee.name.first,
+                        lastName: employee.name.last,
+                        phone: employee.phone,
+                        cell: employee.cell,
+                        email: employee.email,
+                        thumbnail: employee.picture.thumbnail
+                    }
+                });
+
+                this.setState({
+                    employees: [...employees]
+                });
+            }).catch(err => console.error(err));
     }
 
     render() {
-  
+
         return (
             <div>
                 <table>
@@ -34,8 +45,8 @@ class Table extends Component {
                     </thead>
                     <tbody>
                         {this.state.employees.map(employee => {
-                            return(
-                                <UserRow employee={employee}/>
+                            return (
+                                <UserRow employee={employee} />
                             );
                         })}
                     </tbody>
