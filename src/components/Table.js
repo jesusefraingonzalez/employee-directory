@@ -46,7 +46,7 @@ class Table extends Component {
                     <tbody>
                         {this.state.employees.map(employee => {
                             return (
-                                <UserRow employee={employee} />
+                                <UserRow key={employee.email} employee={employee} />
                             );
                         })}
                     </tbody>
