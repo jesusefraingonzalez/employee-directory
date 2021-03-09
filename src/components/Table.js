@@ -10,9 +10,11 @@ class Table extends Component {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Phone</th>
                             <th>Cell</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>

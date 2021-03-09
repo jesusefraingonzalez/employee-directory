@@ -18,7 +18,8 @@ class UserRow extends Component {
         return (
             <tr>
                 <td><img src={this.state.thumbnail} alt='user thumbnail' /></td>
-                <td>{`${this.state.firstName} ${this.state.lastName}`}</td>
+                <td>{this.state.firstName}</td>
+                <td>{this.state.lastName}</td>
                 <td>{this.state.phone}</td>
                 <td>{this.state.cell}</td>
                 <td>{this.state.email}</td>
