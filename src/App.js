@@ -1,13 +1,9 @@
 import './App.css';
-import Searchbar from './components/Searchbar';
-import Table from './components/Table';
+import Container from './components/Container';
 
 function App() {
   return (
-    <div>
-      <Searchbar />
-      <Table />
-    </div>
+   <Container />
   );
 }
 
