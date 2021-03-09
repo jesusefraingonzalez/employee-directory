@@ -13,11 +13,11 @@ class UserRow extends Component {
     componentDidMount() {
         this.setState(this.props.employee);
     }
-    
+
     render() {
         return (
             <tr>
-                <td><img src={this.state.thumbnail} /></td>
+                <td><img src={this.state.thumbnail} alt='user thumbnail' /></td>
                 <td>{`${this.state.firstName} ${this.state.lastName}`}</td>
                 <td>{this.state.phone}</td>
                 <td>{this.state.cell}</td>
