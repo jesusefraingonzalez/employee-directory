@@ -6,28 +6,29 @@ class Table extends Component {
     state = {
         employees: [],
         sortedEmployees: [],
-        sortCriteria: '',
-        sortOrder: '',
-        isSorted: false,
+        sortCriteria: 'last name',
+        sortOrder: 'descending',
+        isSorted: true,
     }
 
     sortEmployees() {
         let list = this.state.sortedEmployees;
-        if (!this.isSorted) return this.setState({ sortedEmployees: this.state.employees });
+        if (!this.state.isSorted) return this.setState({ sortedEmployees: this.state.employees });
 
         switch (this.state.sortCriteria) {
             case 'first name':
-                if (this.state.sortOrder === 'ascending') list = list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
-                else list = list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
+                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
+                else list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
                 break;
             case 'last name':
-                if (this.state.sortOrder === 'ascending') list = list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
-                else list = list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
+                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
+                else list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
                 break;
             default:
                 break;
         }
-
+        this.setState({sortedEmployees: list});
+        console.log(this.state.sortedEmployees);
     }
 
     // make api call when the table mounts
@@ -51,6 +52,8 @@ class Table extends Component {
                     employees: [...employees],
                     sortedEmployees: [...employees]
                 });
+                this.sortEmployees();
+
             }).catch(err => console.error(err));
     }
 
