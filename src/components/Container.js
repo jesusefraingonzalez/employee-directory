@@ -21,7 +21,7 @@ class Container extends Component {
     }
 
     handleSearch = event => {
-        this.setState({filterQuery: event.target.value});
+        this.setState({ filterQuery: event.target.value });
     }
 
     filterEmployees = () => {
@@ -35,16 +35,15 @@ class Container extends Component {
 
         switch (this.state.sortCriteria) {
             case 'first name':
-                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
-                else list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
-                break;
+                if (this.state.sortOrder === 'ascending') return list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
+                else return list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
             case 'last name':
-                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
-                else list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
-                break;
+                if (this.state.sortOrder === 'ascending') return list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
+                else return list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
             default:
                 break;
         }
+
         this.setState({ sortedEmployees: list });
         console.log(this.state.sortedEmployees);
     }
@@ -76,11 +75,16 @@ class Container extends Component {
 
     render() {
         return (
-            <div>
-                <input onChange={this.handleSearch} type='text' />
-                <button onClick={() => this.filterEmployees()}> Filter by Name</button>
-                <br/> 
-                <button onClick={() => this.sortEmployees()}>Sort by First Name</button>
+            <div className='container'>
+                <input onChange={this.handleSearch} type='text' /> &nbsp;&nbsp;
+                <button
+                    className='btn btn-primary'
+                    onClick={() => this.filterEmployees()}>
+                    Filter by Name</button> &nbsp;&nbsp;
+                <button
+                    className='btn btn-primary'
+                    onClick={() => this.filterEmployees().sort(this.sortEmployees)}>
+                    Sort by First Name</button><br/><br/>
                 <Table employees={this.state.sortedEmployees} />
             </div>
         )
