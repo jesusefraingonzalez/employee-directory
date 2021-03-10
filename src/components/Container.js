@@ -24,9 +24,11 @@ class Container extends Component {
         this.setState({ filterQuery: event.target.value });
     }
 
+    // filtering the employees returns a new array
     filterEmployees = () => {
         let query = this.state.filterQuery.toLowerCase();
-        return this.state.sortedEmployees.filter(employee => employee.firstName.toLowerCase().includes(query));
+        if(this.state.filterQuery === '') return this.state.sortedEmployees;
+        return this.state.sortedEmployees.filter(employee => employee.firstName.toLowerCase().includes(query) || employee.lastName.toLowerCase().includes(query));
     }
 
     sortEmployees = () => {
@@ -35,19 +37,23 @@ class Container extends Component {
 
         switch (this.state.sortCriteria) {
             case 'first name':
-                if (this.state.sortOrder === 'ascending') return list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
-                else return list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
+                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
+                else list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
             case 'last name':
-                if (this.state.sortOrder === 'ascending') return list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
-                else return list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
+                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
+                else list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
             default:
                 break;
         }
-
-        this.setState({ sortedEmployees: list });
         console.log(this.state.sortedEmployees);
     }
 
+    resetSort = () => {
+        this.setState({
+            sortedEmployees: this.employees,
+            isSorted: false,
+        })
+    }
     // make api call when the table mounts
     componentDidMount() {
         // api call to get random users
@@ -79,13 +85,13 @@ class Container extends Component {
                 <input onChange={this.handleSearch} type='text' /> &nbsp;&nbsp;
                 <button
                     className='btn btn-primary'
-                    onClick={() => this.filterEmployees()}>
-                    Filter by Name</button> &nbsp;&nbsp;
-                <button
-                    className='btn btn-primary'
                     onClick={() => this.filterEmployees().sort(this.sortEmployees)}>
-                    Sort by First Name</button><br/><br/>
-                <Table employees={this.state.sortedEmployees} />
+                    Sort by First Name</button> &nbsp;&nbsp;
+                <button
+                    className='btn btn-warning'
+                    onClick={() => this.resetSort()}>
+                    Reset</button><br /><br />
+                <Table employees={this.filterEmployees()} />
             </div>
         )
     }
