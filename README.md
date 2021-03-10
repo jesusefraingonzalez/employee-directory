@@ -1,3 +1,43 @@
+# employee-directory
+  
+![License](https://img.shields.io/badge/LICENSE-MIT-blue)
+
+## Description
+This is an employee directory built using React.js. It allows users to filter and sort the employees by name.
+  
+## Table of Contents
+1. [Installation](#Installation)
+2. [Usage](#Usage)
+3. [License](#License)
+4. [Contributing](#Contributing)
+5. [Tests](#Tests)
+6. [Contact Information](#Questions)
+  
+## Installation
+* fork or clone the repo 
+* run npm i in the root folder 
+* run npm start to launch the site in localhost
+
+## Usage
+Use this project to keep track of and lookup your employees. 
+
+## Technologies Used
+* Node.js
+* React.js
+* Bootstrap
+* gh-pages
+* axios
+
+## License
+This project is licensed under the MIT license.
+
+## Questions
+**Github:** [jesusefraingonzalez](https://github.com/jesusefraingonzalez)
+  
+Contact me at jesusgonzalez0797@gmail.co with any additional questions. 
+  
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
