@@ -8,19 +8,28 @@ class Container extends Component {
         employees: [],
         sortedEmployees: [],
         sortCriteria: 'last name',
-        sortOrder: 'descending',
+        sortOrder: 'ascending',
         isSorted: true,
         filterQuery: ''
     }
 
-    filterEmployees() {
-        let query = this.state.query;
-        return this.state.sortedEmployees.filter(employee => {
-            return employee.firstName.toLowerCase().includes(query) || employee.lastName.toLowerCase().includes(query);
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
         });
     }
 
-    sortEmployees() {
+    handleSearch = event => {
+        this.setState({filterQuery: event.target.value});
+    }
+
+    filterEmployees = () => {
+        let query = this.state.filterQuery.toLowerCase();
+        return this.state.sortedEmployees.filter(employee => employee.firstName.toLowerCase().includes(query));
+    }
+
+    sortEmployees = () => {
         let list = this.state.sortedEmployees;
         if (!this.state.isSorted) return this.setState({ sortedEmployees: this.state.employees });
 
@@ -36,7 +45,7 @@ class Container extends Component {
             default:
                 break;
         }
-        this.setState({sortedEmployees: list});
+        this.setState({ sortedEmployees: list });
         console.log(this.state.sortedEmployees);
     }
 
@@ -61,15 +70,18 @@ class Container extends Component {
                     employees: [...employees],
                     sortedEmployees: [...employees]
                 });
-                this.sortEmployees();
 
             }).catch(err => console.error(err));
     }
+
     render() {
         return (
             <div>
-                <Searchbar />
-                <Table employees={this.state.sortedEmployees}/>
+                <input onChange={this.handleSearch} type='text' />
+                <button onClick={() => this.filterEmployees()}> Filter by Name</button>
+                <br/> 
+                <button onClick={() => this.sortEmployees()}>Sort by First Name</button>
+                <Table employees={this.state.sortedEmployees} />
             </div>
         )
     }
