@@ -57,7 +57,7 @@ class Container extends Component {
     // make api call when the table mounts
     componentDidMount() {
         // api call to get random users
-        API.getRandomUsers(5)
+        API.getRandomUsers(15)
             .then(({ data }) => {
                 const employees = data.results.map(employee => {
                     // returns an object with no nested objects
