@@ -33,18 +33,18 @@ class Container extends Component {
 
     sortEmployees = () => {
         let list = this.state.sortedEmployees;
-        if (!this.state.isSorted) return this.setState({ sortedEmployees: this.state.employees });
 
         switch (this.state.sortCriteria) {
             case 'first name':
-                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.firstName < b.firstName ? -1 : 1);
-                else list.sort((a, b) => a.firstName > b.firstName ? -1 : 1);
+                if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.firstName.toLowerCase().localeCompare(b.firstName) ? -1 : 1);
+                else list.sort((a, b) => a.firstName.toLowerCase() > b.firstName.toLowerCase() ? -1 : 1);
             case 'last name':
                 if (this.state.sortOrder === 'ascending') list.sort((a, b) => a.lastName < b.lastName ? -1 : 1);
                 else list.sort((a, b) => a.lastName > b.lastName ? -1 : 1);
             default:
                 break;
         }
+        this.setState({sortedEmployees: list});
         console.log(this.state.sortedEmployees);
     }
 
@@ -85,7 +85,7 @@ class Container extends Component {
                 <input onChange={this.handleSearch} type='text' /> &nbsp;&nbsp;
                 <button
                     className='btn btn-primary'
-                    onClick={() => this.filterEmployees().sort(this.sortEmployees)}>
+                    onClick={() => this.sortEmployees()}>
                     Sort by First Name</button> &nbsp;&nbsp;
                 <button
                     className='btn btn-warning'
