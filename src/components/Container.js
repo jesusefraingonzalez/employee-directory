@@ -7,7 +7,7 @@ class Container extends Component {
     state = {
         employees: [],
         sortedEmployees: [],
-        sortCriteria: 'last name',
+        sortCriteria: 'first name',
         sortOrder: 'ascending',
         isSorted: true,
         filterQuery: ''
