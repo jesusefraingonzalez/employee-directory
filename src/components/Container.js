@@ -45,13 +45,11 @@ class Container extends Component {
                 break;
         }
         this.setState({sortedEmployees: list});
-        console.log(this.state.sortedEmployees);
     }
 
     resetSort = () => {
         this.setState({
-            sortedEmployees: this.employees,
-            isSorted: false,
+            sortedEmployees: this.state.employees
         })
     }
     // make api call when the table mounts
@@ -85,11 +83,11 @@ class Container extends Component {
                 <input onChange={this.handleSearch} type='text' /> &nbsp;&nbsp;
                 <button
                     className='btn btn-primary'
-                    onClick={() => this.sortEmployees()}>
-                    Sort by First Name</button> &nbsp;&nbsp;
+                    onClick={this.sortEmployees}>
+                    Sort by Last Name</button> &nbsp;&nbsp;
                 <button
                     className='btn btn-warning'
-                    onClick={() => this.resetSort()}>
+                    onClick={this.resetSort}>
                     Reset</button><br /><br />
                 <Table employees={this.filterEmployees()} />
             </div>
