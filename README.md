@@ -31,6 +31,8 @@ Use this project to keep track of and lookup your employees.
 ## Images
 ![screenshot](./assets/screenshot.png)
 
+[Link to deployed website](https://jesusefraingonzalez.github.io/employee-directory/)
+
 ## License
 This project is licensed under the MIT license.
 
